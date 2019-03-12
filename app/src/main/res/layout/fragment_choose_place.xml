@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:paddingLeft="@dimen/size_30dp"
+    android:paddingRight="@dimen/size_30dp"
     android:layout_height="match_parent">
 
 
@@ -9,25 +13,54 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:paddingLeft="@dimen/size_10dp"
+        android:textColor="@color/white"
+        android:background="@drawable/border_white"
+        android:textColorHint="@color/white"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/size_50dp"
+        android:minHeight="@dimen/size_50dp"
         android:inputType="textPersonName"
-        android:text="from" />
+        android:hint="from" />
 
     <EditText
         android:id="@+id/to"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:background="@drawable/border_white"
+        android:textColor="@color/white"
+        android:paddingLeft="@dimen/size_10dp"
+        android:textColorHint="@color/white"
+        android:layout_marginTop="@dimen/size_30dp"
+        android:minHeight="@dimen/size_50dp"
         android:layout_below="@id/from"
         android:inputType="textPersonName"
-        android:text="to" />
+        android:hint="to" />
+
     <TextView
         android:id="@+id/search"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:gravity="center"
+        android:layout_above="@id/from"
+        android:layout_centerHorizontal="true"
+        android:minHeight="50dp"
+        android:textStyle="bold"
+        android:text="Search Location"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:visibility="visible"
+        app:fontFamily="cursive" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:clickable="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/size_30dp"
         android:layout_below="@id/to"
-        android:text="zdsfsfafsfs"
-        android:minHeight="50dp"/>
+        app:backgroundTint="@color/white"
+        app:srcCompat="@drawable/ic_right_arrow" />
 
 </RelativeLayout>

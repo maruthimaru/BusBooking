@@ -124,6 +124,8 @@
     <color name="material_blue_grey_900">#ff263238</color>
     <color name="material_blue_grey_95">#ff21272b</color>
     <color name="material_blue_grey_950">#ff21272b</color>
+  <color name="QRCodeBlackColor">#000000</color>
+  <color name="QRCodeWhiteColor">#ffffff</color>
     <color name="material_deep_teal_20">#ff80cbc4</color>
     <color name="material_deep_teal_200">#ff80cbc4</color>
     <color name="material_deep_teal_50">#ff009688</color>

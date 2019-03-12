@@ -43,8 +43,8 @@ public class BusListAdapter extends RecyclerView.Adapter<BusListAdapter.StudentM
     final BusListModel busListModel=BusListModelList.get(position);
         holder.name.setText(busListModel.getBusName());
         holder.acnon.setText(busListModel.getAcNon());
-        holder.seats.setText(busListModel.getSeats());
-        holder.prize.setText(busListModel.getAmount());
+        holder.seats.setText("seats : "+busListModel.getSeats());
+        holder.prize.setText("₹"+busListModel.getAmount());
         holder.rating.setText(busListModel.getRatings());
         holder.memberRating.setText(busListModel.getRatingMember());
         holder.cardView.setOnClickListener(new View.OnClickListener() {

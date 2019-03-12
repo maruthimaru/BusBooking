@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         // replace the FrameLayout with new Fragment
         fragmentTransaction.replace(R.id.framLayout, fragment);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit(); // save the changes
     }
 }
