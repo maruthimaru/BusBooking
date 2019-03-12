@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "962298080426",
+    "firebase_url": "https://busbooking-f3ee3.firebaseio.com",
+    "project_id": "busbooking-f3ee3",
+    "storage_bucket": "busbooking-f3ee3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962298080426:android:ac934992bb06f70e",
+        "android_client_info": {
+          "package_name": "com.jp.busbooking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "962298080426-2h3icc9k0kis06es63agpdlsejremgjj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jp.busbooking",
+            "certificate_hash": "f54cb46e14947a3c68cc76ea4aa9d7b9ac6e5cfc"
+          }
+        },
+        {
+          "client_id": "962298080426-qaqeafp3d3knlpuiohnttdhnugmabc5d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpsdDTRm5aIjF9EpAfJnPk9qjVkQCi0wo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "962298080426-qaqeafp3d3knlpuiohnttdhnugmabc5d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
