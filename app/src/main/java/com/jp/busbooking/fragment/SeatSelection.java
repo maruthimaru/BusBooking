@@ -40,6 +40,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class SeatSelection extends Fragment {
     ArrayList<String> arrayList = new ArrayList<String>();
     ArrayList<String> arrayList1 = new ArrayList<String>();
+    ArrayList<String> arrayListSelected = new ArrayList<String>();
     SQLiteDatabase sql;
     DatabaseHelper db;
     StaticData staticData;
@@ -305,10 +306,12 @@ public class SeatSelection extends Fragment {
                 ColorDrawable buttonColor = (ColorDrawable) A1.getBackground();
                 colorid = buttonColor.getColor();
 
-                if (colorid == (-1654272)) {
+//                if (colorid == (-1654272)) {
+                if (colorid == (-1)) {
                     System.out.println("I am in selected seat");
                     A1.setBackgroundColor(Color.parseColor("#87A96B"));
                     seats_counter++;
+                    arrayListSelected.add("A1");
                     arrayList.add("A1");
                     // Toast toast= Toast.makeText(getActivity(),"You have selected this seat.",Toast.LENGTH_LONG);
                     // toast.show();
@@ -321,8 +324,9 @@ public class SeatSelection extends Fragment {
                     System.out.println("This seat is unselected");
                     //  Toast toast= Toast.makeText(getActivity(),"You have unselected this seat.",Toast.LENGTH_LONG);
                     //  toast.show();
-                    A1.setBackgroundColor(Color.parseColor("#E6C200"));
+                    A1.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     seats_counter--;
+                    arrayListSelected.remove("A1");
                     arrayList.remove("A1");
                 }
             }
@@ -335,9 +339,11 @@ public class SeatSelection extends Fragment {
                 ColorDrawable buttonColor = (ColorDrawable) A2.getBackground();
                 colorid = buttonColor.getColor();
 
-                if (colorid == (-1654272)) {
+//                if (colorid == (-1654272)) {
+                if (colorid == (-1)) {
                     A2.setBackgroundColor(Color.parseColor("#87A96B"));
                     seats_counter++;
+                    arrayListSelected.add("A2");
                     arrayList.add("A2");
                     //   Toast toast= Toast.makeText(getActivity(),"You have selected this seat.",Toast.LENGTH_LONG);
                     //   toast.show();
@@ -348,8 +354,9 @@ public class SeatSelection extends Fragment {
                 } else if (colorid == (-7886485)) {
                     //    Toast toast= Toast.makeText(getActivity(),"You have unselected this seat.",Toast.LENGTH_LONG);
                     //    toast.show();
-                    A2.setBackgroundColor(Color.parseColor("#E6C200"));
+                    A2.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     seats_counter--;
+                    arrayListSelected.remove("A2");
                     arrayList.remove("A2");
                 }
             }
@@ -361,10 +368,12 @@ public class SeatSelection extends Fragment {
 
                 ColorDrawable buttonColor = (ColorDrawable) A3.getBackground();
                 colorid = buttonColor.getColor();
-
-                if (colorid == (-1654272)) {
+                Log.e(TAG, "onClick: colour code : "+buttonColor.getColor() );
+//                if (colorid == (-1654272)) {
+                    if (colorid == (-1)) {
                     A3.setBackgroundColor(Color.parseColor("#87A96B"));
                     seats_counter++;
+                    arrayListSelected.add("A3");
                     arrayList.add("A3");
 
                 } else if (colorid == (-6005925)) {
@@ -372,8 +381,9 @@ public class SeatSelection extends Fragment {
                     toast.show();
                 } else if (colorid == (-7886485)) {
 
-                    A3.setBackgroundColor(Color.parseColor("#E6C200"));
+                    A3.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     seats_counter--;
+                    arrayListSelected.remove("A3");
                     arrayList.remove("A3");
                 }
             }
@@ -386,9 +396,11 @@ public class SeatSelection extends Fragment {
                 ColorDrawable buttonColor = (ColorDrawable) A4.getBackground();
                 colorid = buttonColor.getColor();
 
-                if (colorid == (-1654272)) {
+//                if (colorid == (-1654272)) {
+                if (colorid == (-1)) {
                     A4.setBackgroundColor(Color.parseColor("#87A96B"));
                     seats_counter++;
+                    arrayListSelected.add("A4");
                     arrayList.add("A4");
 //                    Toast toast= Toast.makeText(getActivity(),"You have selected this seat.",Toast.LENGTH_LONG);
 //                    toast.show();
@@ -398,8 +410,9 @@ public class SeatSelection extends Fragment {
                 } else if (colorid == (-7886485)) {
                     //   Toast toast= Toast.makeText(getActivity(),"You have unselected this seat.",Toast.LENGTH_LONG);
                     //   toast.show();
-                    A4.setBackgroundColor(Color.parseColor("#E6C200"));
+                    A4.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     seats_counter--;
+                    arrayListSelected.remove("A4");
                     arrayList.remove("A4");
                 }
             }
@@ -412,9 +425,11 @@ public class SeatSelection extends Fragment {
                 ColorDrawable buttonColor = (ColorDrawable) A5.getBackground();
                 colorid = buttonColor.getColor();
 
-                if (colorid == (-1654272)) {
+//                if (colorid == (-1654272)) {
+                if (colorid == (-1)) {
                     A5.setBackgroundColor(Color.parseColor("#87A96B"));
                     seats_counter++;
+                    arrayListSelected.add("A5");
                     arrayList.add("A5");
 
                 } else if (colorid == (-6005925)) {
@@ -422,8 +437,9 @@ public class SeatSelection extends Fragment {
                     toast.show();
                 } else if (colorid == (-7886485)) {
 
-                    A5.setBackgroundColor(Color.parseColor("#E6C200"));
+                    A5.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     seats_counter--;
+                    arrayListSelected.remove("A5");
                     arrayList.remove("A5");
                 }
             }
@@ -436,9 +452,11 @@ public class SeatSelection extends Fragment {
                 ColorDrawable buttonColor = (ColorDrawable) A6.getBackground();
                 colorid = buttonColor.getColor();
 
-                if (colorid == (-1654272)) {
+//                if (colorid == (-1654272)) {
+                if (colorid == (-1)) {
                     A6.setBackgroundColor(Color.parseColor("#87A96B"));
                     seats_counter++;
+                    arrayListSelected.add("A6");
                     arrayList.add("A6");
                     //Toast toast= Toast.makeText(getActivity(),"You have selected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
@@ -448,8 +466,9 @@ public class SeatSelection extends Fragment {
                 } else if (colorid == (-7886485)) {
                     //Toast toast= Toast.makeText(getActivity(),"You have unselected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
-                    A6.setBackgroundColor(Color.parseColor("#E6C200"));
+                    A6.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     seats_counter--;
+                    arrayListSelected.remove("A6");
                     arrayList.remove("A6");
                 }
             }
@@ -461,9 +480,11 @@ public class SeatSelection extends Fragment {
                 ColorDrawable buttonColor = (ColorDrawable) B1.getBackground();
                 colorid = buttonColor.getColor();
 
-                if (colorid == (-1654272)) {
+//                if (colorid == (-1654272)) {
+                if (colorid == (-1)) {
                     B1.setBackgroundColor(Color.parseColor("#87A96B"));
                     seats_counter++;
+                    arrayListSelected.add("B1");
                     arrayList.add("B1");
                     //Toast toast= Toast.makeText(getActivity(),"You have selected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
@@ -473,8 +494,9 @@ public class SeatSelection extends Fragment {
                 } else if (colorid == (-7886485)) {
                     //Toast toast= Toast.makeText(getActivity(),"You have unselected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
-                    B1.setBackgroundColor(Color.parseColor("#E6C200"));
+                    B1.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     seats_counter--;
+                    arrayListSelected.remove("B1");
                     arrayList.remove("B1");
                 }
             }
@@ -487,9 +509,11 @@ public class SeatSelection extends Fragment {
                 ColorDrawable buttonColor = (ColorDrawable) B2.getBackground();
                 colorid = buttonColor.getColor();
 
-                if (colorid == (-1654272)) {
+//                if (colorid == (-1654272)) {
+                if (colorid == (-1)) {
                     B2.setBackgroundColor(Color.parseColor("#87A96B"));
                     seats_counter++;
+                    arrayListSelected.add("B2");
                     arrayList.add("B2");
                     //Toast toast= Toast.makeText(getActivity(),"You have selected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
@@ -499,8 +523,9 @@ public class SeatSelection extends Fragment {
                 } else if (colorid == (-7886485)) {
                     //Toast toast= Toast.makeText(getActivity(),"You have unselected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
-                    B2.setBackgroundColor(Color.parseColor("#E6C200"));
+                    B2.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     seats_counter--;
+                    arrayListSelected.remove("B2");
                     arrayList.remove("B2");
                 }
             }
@@ -513,9 +538,11 @@ public class SeatSelection extends Fragment {
                 ColorDrawable buttonColor = (ColorDrawable) B3.getBackground();
                 colorid = buttonColor.getColor();
 
-                if (colorid == (-1654272)) {
+//                if (colorid == (-1654272)) {
+                if (colorid == (-1)) {
                     B3.setBackgroundColor(Color.parseColor("#87A96B"));
                     seats_counter++;
+                    arrayListSelected.add("B3");
                     arrayList.add("B3");
                     //Toast toast= Toast.makeText(getActivity(),"You have selected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
@@ -525,8 +552,9 @@ public class SeatSelection extends Fragment {
                 } else if (colorid == (-7886485)) {
                     //Toast toast= Toast.makeText(getActivity(),"You have unselected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
-                    B3.setBackgroundColor(Color.parseColor("#E6C200"));
+                    B3.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     seats_counter--;
+                    arrayListSelected.remove("B3");
                     arrayList.remove("B3");
                 }
             }
@@ -539,9 +567,11 @@ public class SeatSelection extends Fragment {
                 ColorDrawable buttonColor = (ColorDrawable) B4.getBackground();
                 colorid = buttonColor.getColor();
 
-                if (colorid == (-1654272)) {
+//                if (colorid == (-1654272)) {
+                if (colorid == (-1)) {
                     B4.setBackgroundColor(Color.parseColor("#87A96B"));
                     seats_counter++;
+                    arrayListSelected.add("B4");
                     arrayList.add("B4");
                     //Toast toast= Toast.makeText(getActivity(),"You have selected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
@@ -551,8 +581,9 @@ public class SeatSelection extends Fragment {
                 } else if (colorid == (-7886485)) {
                     //Toast toast= Toast.makeText(getActivity(),"You have unselected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
-                    B4.setBackgroundColor(Color.parseColor("#E6C200"));
+                    B4.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     seats_counter--;
+                    arrayListSelected.remove("B4");
                     arrayList.remove("B4");
                 }
             }
@@ -565,9 +596,11 @@ public class SeatSelection extends Fragment {
                 ColorDrawable buttonColor = (ColorDrawable) C1.getBackground();
                 colorid = buttonColor.getColor();
 
-                if (colorid == (-1654272)) {
+//                if (colorid == (-1654272)) {
+                if (colorid == (-1)) {
                     C1.setBackgroundColor(Color.parseColor("#87A96B"));
                     seats_counter++;
+                    arrayListSelected.add("C1");
                     arrayList.add("C1");
                     //Toast toast= Toast.makeText(getActivity(),"You have selected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
@@ -577,8 +610,9 @@ public class SeatSelection extends Fragment {
                 } else if (colorid == (-7886485)) {
                     //Toast toast= Toast.makeText(getActivity(),"You have unselected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
-                    C1.setBackgroundColor(Color.parseColor("#E6C200"));
+                    C1.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     seats_counter--;
+                    arrayListSelected.remove("C1");
                     arrayList.remove("C1");
                 }
 
@@ -592,9 +626,11 @@ public class SeatSelection extends Fragment {
                 ColorDrawable buttonColor = (ColorDrawable) C2.getBackground();
                 colorid = buttonColor.getColor();
 
-                if (colorid == (-1654272)) {
+//                if (colorid == (-1654272)) {
+                if (colorid == (-1)) {
                     C2.setBackgroundColor(Color.parseColor("#87A96B"));
                     seats_counter++;
+                    arrayListSelected.add("C2");
                     arrayList.add("C2");
                     //Toast toast= Toast.makeText(getActivity(),"You have selected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
@@ -604,8 +640,9 @@ public class SeatSelection extends Fragment {
                 } else if (colorid == (-7886485)) {
                     //Toast toast= Toast.makeText(getActivity(),"You have unselected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
-                    C2.setBackgroundColor(Color.parseColor("#E6C200"));
+                    C2.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     seats_counter--;
+                    arrayListSelected.remove("C2");
                     arrayList.remove("C2");
                 }
             }
@@ -618,9 +655,11 @@ public class SeatSelection extends Fragment {
                 ColorDrawable buttonColor = (ColorDrawable) C3.getBackground();
                 colorid = buttonColor.getColor();
 
-                if (colorid == (-1654272)) {
+//                if (colorid == (-1654272)) {
+                if (colorid == (-1)) {
                     C3.setBackgroundColor(Color.parseColor("#87A96B"));
                     seats_counter++;
+                    arrayListSelected.add("C3");
                     arrayList.add("C3");
                     // Toast toast= Toast.makeText(getActivity(),"You have selected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
@@ -630,8 +669,9 @@ public class SeatSelection extends Fragment {
                 } else if (colorid == (-7886485)) {
                     //Toast toast= Toast.makeText(getActivity(),"You have unselected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
-                    C3.setBackgroundColor(Color.parseColor("#E6C200"));
+                    C3.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     seats_counter--;
+                    arrayListSelected.remove("C3");
                     arrayList.remove("C3");
                 }
             }
@@ -644,9 +684,11 @@ public class SeatSelection extends Fragment {
                 ColorDrawable buttonColor = (ColorDrawable) C4.getBackground();
                 colorid = buttonColor.getColor();
 
-                if (colorid == (-1654272)) {
+//                if (colorid == (-1654272)) {
+                if (colorid == (-1)) {
                     C4.setBackgroundColor(Color.parseColor("#87A96B"));
                     seats_counter++;
+                    arrayListSelected.add("C4");
                     arrayList.add("C4");
                     //Toast toast= Toast.makeText(getActivity(),"You have selected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
@@ -656,8 +698,9 @@ public class SeatSelection extends Fragment {
                 } else if (colorid == (-7886485)) {
                     //Toast toast= Toast.makeText(getActivity(),"You have unselected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
-                    C4.setBackgroundColor(Color.parseColor("#E6C200"));
+                    C4.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     seats_counter--;
+                    arrayListSelected.remove("C4");
                     arrayList.remove("C4");
                 }
             }
@@ -670,9 +713,11 @@ public class SeatSelection extends Fragment {
                 ColorDrawable buttonColor = (ColorDrawable) D1.getBackground();
                 colorid = buttonColor.getColor();
 
-                if (colorid == (-1654272)) {
+//                if (colorid == (-1654272)) {
+                if (colorid == (-1)) {
                     D1.setBackgroundColor(Color.parseColor("#87A96B"));
                     seats_counter++;
+                    arrayListSelected.add("D1");
                     arrayList.add("D1");
                     //Toast toast= Toast.makeText(getActivity(),"You have selected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
@@ -682,8 +727,9 @@ public class SeatSelection extends Fragment {
                 } else if (colorid == (-7886485)) {
                     //Toast toast= Toast.makeText(getActivity(),"You have unselected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
-                    D1.setBackgroundColor(Color.parseColor("#E6C200"));
+                    D1.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     seats_counter--;
+                    arrayListSelected.remove("D1");
                     arrayList.remove("D1");
                 }
             }
@@ -696,9 +742,11 @@ public class SeatSelection extends Fragment {
                 ColorDrawable buttonColor = (ColorDrawable) D2.getBackground();
                 colorid = buttonColor.getColor();
 
-                if (colorid == (-1654272)) {
+//                if (colorid == (-1654272)) {
+                if (colorid == (-1)) {
                     D2.setBackgroundColor(Color.parseColor("#87A96B"));
                     seats_counter++;
+                    arrayListSelected.add("D2");
                     arrayList.add("D2");
                     //Toast toast= Toast.makeText(getActivity(),"You have selected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
@@ -708,8 +756,9 @@ public class SeatSelection extends Fragment {
                 } else if (colorid == (-7886485)) {
                     //Toast toast= Toast.makeText(getActivity(),"You have unselected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
-                    D2.setBackgroundColor(Color.parseColor("#E6C200"));
+                    D2.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     seats_counter--;
+                    arrayListSelected.remove("D2");
                     arrayList.remove("D2");
                 }
             }
@@ -722,9 +771,11 @@ public class SeatSelection extends Fragment {
                 ColorDrawable buttonColor = (ColorDrawable) D3.getBackground();
                 colorid = buttonColor.getColor();
 
-                if (colorid == (-1654272)) {
+//                if (colorid == (-1654272)) {
+                if (colorid == (-1)) {
                     D3.setBackgroundColor(Color.parseColor("#87A96B"));
                     seats_counter++;
+                    arrayListSelected.add("D3");
                     arrayList.add("D3");
                     //Toast toast= Toast.makeText(getActivity(),"You have selected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
@@ -734,8 +785,9 @@ public class SeatSelection extends Fragment {
                 } else if (colorid == (-7886485)) {
                     //Toast toast= Toast.makeText(getActivity(),"You have unselected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
-                    D3.setBackgroundColor(Color.parseColor("#E6C200"));
+                    D3.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     seats_counter--;
+                    arrayListSelected.remove("D3");
                     arrayList.remove("D3");
                 }
             }
@@ -748,9 +800,11 @@ public class SeatSelection extends Fragment {
                 ColorDrawable buttonColor = (ColorDrawable) D4.getBackground();
                 colorid = buttonColor.getColor();
 
-                if (colorid == (-1654272)) {
+//                if (colorid == (-1654272)) {
+                if (colorid == (-1)) {
                     D4.setBackgroundColor(Color.parseColor("#87A96B"));
                     seats_counter++;
+                    arrayListSelected.add("D4");
                     arrayList.add("D4");
                     //Toast toast= Toast.makeText(getActivity(),"You have selected this seat.",Toast.LENGTH_SHORT);
                     //toast.show();
@@ -760,8 +814,9 @@ public class SeatSelection extends Fragment {
                 } else if (colorid == (-7886485)) {
                     //Toast toast= Toast.makeText(getActivity(),"You have unselected this seat.",Toast.LENGTH_LONG);
                     //toast.show();
-                    D4.setBackgroundColor(Color.parseColor("#E6C200"));
+                    D4.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     seats_counter--;
+                    arrayListSelected.remove("D4");
                     arrayList.remove("D4");
                 }
             }
@@ -809,15 +864,28 @@ public class SeatSelection extends Fragment {
 
         Log.e(TAG, "seat_information: " + seats_counter);
         Log.e(TAG, "total_information: " + arrayList1.size());
-
+        Log.e(TAG, "selected seats: " + arrayListSelected.toString());
+        /*String seatSelected = null;
+        int i=0;*/
+       /* for (String a:arrayListSelected){
+            Log.e(TAG, "seat_information: "+a );
+            i++;
+            Log.e(TAG, "seat_information: "+i );
+            if (i<arrayListSelected.size()) {
+                seatSelected = a;
+                seatSelected=seatSelected+", ";
+            }else {
+                seatSelected=seatSelected+", "+a;
+            }
+        }*/
+//        Log.e(TAG, "seat_information: "+seatSelected );
         if (seats_counter != 0) {
             bundle = new Bundle();
-
             bundle.putStringArrayList("seats", arrayList);
             bundle.putStringArrayList("total", arrayList1);
             addListtoFirebase(arrayList);
             staticData.sweetAlertDialog("Bus Ticket Booked","Get your QR Code", SweetAlertDialog.SUCCESS_TYPE);
-            setFragment(new DoneFragment(),busListModelList,seats_counter);
+            setFragment(new DoneFragment(),busListModelList,seats_counter,arrayListSelected);
            /* System.out.println("The arraylist items are :"+ outer);
             System.out.println("The movie is : "+ movie);
             System.out.println("The date is: "+ date);*/
@@ -834,11 +902,12 @@ public class SeatSelection extends Fragment {
             toast.show();
         }
     }
-    private void setFragment(Fragment fragment,BusListModel busListModelList,int seatCount) {
+    private void setFragment(Fragment fragment,BusListModel busListModelList,int seatCount,ArrayList<String> arrayListSelected) {
         // create a FragmentManager
         Bundle bundle=new Bundle();
         bundle.putSerializable("list",busListModelList);
         bundle.putInt("seatCount",seatCount);
+        bundle.putSerializable("arrayList",arrayListSelected);
         FragmentManager fm = getActivity().getSupportFragmentManager();
         // create a FragmentTransaction to begin the transaction and replace the Fragment
         FragmentTransaction fragmentTransaction = fm.beginTransaction();

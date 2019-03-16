@@ -6,7 +6,19 @@
     android:paddingLeft="@dimen/size_30dp"
     android:paddingRight="@dimen/size_30dp"
     android:layout_height="match_parent">
-
+    <TextView
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:minHeight="30dp"
+        android:textStyle="bold"
+        android:text="Login"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:visibility="visible"
+        app:fontFamily="cursive" />
 
     <EditText
         android:id="@+id/from"

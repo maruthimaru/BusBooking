@@ -94,7 +94,7 @@ List<BusListModel> busListModelList=new ArrayList<>();
        /* Intent intent=new Intent(getActivity(), SeatSelection.class);
         intent.putExtra("list",busListModelList);
         startActivity(intent);*/
-        setFragment(new SeatSelection(),busListModelList);
+        setFragment(new userInfoFragment(),busListModelList);
     }
     private void setFragment(Fragment fragment,BusListModel busListModelList) {
         // create a FragmentManager

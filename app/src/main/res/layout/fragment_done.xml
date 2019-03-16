@@ -59,11 +59,21 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/seat"
+        android:id="@+id/seatSelected"
         android:textSize="15dp"
         android:gravity="center"
         android:minHeight="@dimen/size_30dp"
         android:layout_marginTop="@dimen/size_30dp"
         android:layout_below="@id/busName"
+        android:textColor="@color/black"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/seat"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:minHeight="@dimen/size_30dp"
+        android:layout_marginTop="@dimen/size_30dp"
+        android:layout_below="@id/seatSelected"
         android:textColor="@color/black"/>
 </RelativeLayout>

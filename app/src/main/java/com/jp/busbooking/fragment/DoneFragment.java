@@ -22,7 +22,10 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.jp.busbooking.R;
+import com.jp.busbooking.helper.Constance;
 import com.jp.busbooking.pojo.BusListModel;
+
+import java.util.ArrayList;
 
 public class DoneFragment extends Fragment {
     ImageView imageView;
@@ -34,8 +37,9 @@ public class DoneFragment extends Fragment {
     Bitmap bitmap;
     BusListModel busListModelList;
     View view;
+    ArrayList<String> stringArrayList;
     int seatCount;
-    TextView busname,seat;
+    TextView busname,seat,seatSelected;
     private String TAG=DoneFragment.class.getSimpleName();
 
     @Nullable
@@ -47,17 +51,20 @@ public class DoneFragment extends Fragment {
         button = (Button) view.findViewById(R.id.button);
         busname =  view.findViewById(R.id.busName);
         seat =  view.findViewById(R.id.seat);
+        seatSelected=view.findViewById(R.id.seatSelected);
         done = (Button) view.findViewById(R.id.done);
         Bundle b = getArguments();
         if (!b.equals(null)) {
             busListModelList = (BusListModel) b.getSerializable("list");
             seatCount=b.getInt("seatCount");
+            stringArrayList= (ArrayList<String>) b.getSerializable("arrayList");
+            seatSelected.setText("Selected Seats = "+stringArrayList.toString());
             Log.e(TAG, "onCreateView: "+seatCount );
             busname.setText(busListModelList.getBusName());
             seat.setText("Total Cost = "+seatCount +"x"+busListModelList.getAmount()+" = ₹"+ seatCount*Integer.parseInt(busListModelList.getAmount()));
         }
         try {
-            bitmap = TextToImageEncode(busListModelList.getBusName());
+            bitmap = TextToImageEncode(Constance.mobile);
             imageView.setImageBitmap(bitmap);
         } catch (WriterException e) {
             e.printStackTrace();
@@ -67,6 +74,7 @@ public class DoneFragment extends Fragment {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Constance.mobile="";
                 setFragment(new ChoosePlaceFragment());
             }
         });

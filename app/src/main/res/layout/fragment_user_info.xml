@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <EditText
+        android:id="@+id/UserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_black"
+        android:minHeight="50dp"
+        android:hint="Name"
+        android:singleLine="true"
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textSize="14dp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"/>
+
+    <EditText
+        android:id="@+id/mobileNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_black"
+        android:minHeight="50dp"
+        android:hint="Mobile Number"
+        android:singleLine="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:inputType="number"
+        android:paddingLeft="10dp"
+        android:textSize="14dp"
+        android:layout_below="@id/UserName"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"/>
+    <EditText
+        android:id="@+id/age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_black"
+        android:minHeight="50dp"
+        android:hint="Age"
+        android:singleLine="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:inputType="number"
+        android:paddingLeft="10dp"
+        android:textSize="14dp"
+        android:layout_below="@id/mobileNo"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:clickable="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/size_30dp"
+        android:layout_below="@id/age"
+        app:backgroundTint="@color/white"
+        app:srcCompat="@drawable/ic_right_arrow" />
+
+</RelativeLayout>
