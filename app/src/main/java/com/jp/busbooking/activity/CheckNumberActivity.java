@@ -18,16 +18,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.jp.busbooking.R;
+import com.jp.busbooking.helper.CommonClass;
 import com.jp.busbooking.helper.Constance;
 import com.jp.busbooking.helper.QRCodeScanner;
 import com.jp.busbooking.helper.QRCodeScannerPortait;
 
 import java.util.ArrayList;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class CheckNumberActivity extends AppCompatActivity {
     ImageView imageView2;
     FirebaseDatabase database;
     DatabaseReference myRef;
+    CommonClass commonClass;
     ArrayList<String> stringArrayList;
 
     @Override
@@ -37,6 +41,7 @@ public class CheckNumberActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
+        commonClass=new CommonClass(this);
         imageView2 = findViewById(R.id.imageView2);
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,9 +76,9 @@ public class CheckNumberActivity extends AppCompatActivity {
                     }
                 }
                 if (Constance.count==1){
-                    Toast.makeText(getApplicationContext(), id + " Has Checked Into Bus ", Toast.LENGTH_SHORT).show();
+                    commonClass.sweetAlertDialog(id, " Has Checked Into Bus ", SweetAlertDialog.SUCCESS_TYPE);
                 }else {
-                    Toast.makeText(getApplicationContext(),  " Not Yet register ", Toast.LENGTH_SHORT).show();
+                    commonClass.sweetAlertDialog(id, "  Not Yet register ", SweetAlertDialog.ERROR_TYPE);
                 }
 //                Toast.makeText(getApplicationContext(), id + " Has Checked Into Bus ", Toast.LENGTH_SHORT).show();
 
