@@ -46,6 +46,7 @@ public class SeatSelection extends Fragment {
     StaticData staticData;
     ArrayList<ArrayList<String>> outer = new ArrayList<ArrayList<String>>();
     int seats_counter = 0;
+    Button O1, O2, O5, O6;
     Button A1, A2, A3, A4, A5, A6, A7, A8, A9, A10;
     Button B1, B2, B3, B4, B5, B6, B7, B8;
     Button C1, C2, C3, C4, C5, C6, C7, C8;
@@ -101,6 +102,11 @@ public class SeatSelection extends Fragment {
         sql = db.getReadableDatabase();
         staticData=new StaticData(getActivity());
         proceed=view.findViewById(R.id.proceed);
+        O1 = (Button) view.findViewById(R.id.O1);
+        O2 = (Button) view.findViewById(R.id.O2);
+        O5 = (Button) view.findViewById(R.id.O5);
+        O6 = (Button) view.findViewById(R.id.O6);
+
         A1 = (Button) view.findViewById(R.id.A1);
         A2 = (Button) view.findViewById(R.id.A2);
         A3 = (Button) view.findViewById(R.id.A3);
@@ -178,7 +184,15 @@ public class SeatSelection extends Fragment {
                 Log.e(TAG, "seatbooked : "+ seats_booked.size());
                 for (int i = 0; i < seats_booked.size(); i++) {
                     System.out.println("Split String: " + seats_booked.get(i));
-                    if ("A1".equals(seats_booked.get(i))) {
+                    if ("O1".equals(seats_booked.get(i))) {
+                        O1.setBackgroundColor(Color.parseColor("#A45B5B"));
+                    } else if ("O2".equals(seats_booked.get(i))) {
+                        O2.setBackgroundColor(Color.parseColor("#A45B5B"));
+                    } else if ("O5".equals(seats_booked.get(i))) {
+                        O5.setBackgroundColor(Color.parseColor("#A45B5B"));
+                    } else if ("O6".equals(seats_booked.get(i))) {
+                        O6.setBackgroundColor(Color.parseColor("#A45B5B"));
+                    } else if ("A1".equals(seats_booked.get(i))) {
                         A1.setBackgroundColor(Color.parseColor("#A45B5B"));
                     } else if ("A2".equals(seats_booked.get(i))) {
                         A2.setBackgroundColor(Color.parseColor("#A45B5B"));
@@ -254,7 +268,15 @@ public class SeatSelection extends Fragment {
             Log.e(TAG, "seatbooked : "+ seats_booked.size());
             for (int i = 0; i < seats_booked.size(); i++) {
                 System.out.println("Split String: " + seats_booked.get(i));
-                if ("A1".equals(seats_booked.get(i))) {
+                if ("O1".equals(seats_booked.get(i))) {
+                    O1.setBackgroundColor(Color.parseColor("#A45B5B"));
+                } else if ("O2".equals(seats_booked.get(i))) {
+                    O2.setBackgroundColor(Color.parseColor("#A45B5B"));
+                } else if ("O5".equals(seats_booked.get(i))) {
+                    O5.setBackgroundColor(Color.parseColor("#A45B5B"));
+                } else if ("O6".equals(seats_booked.get(i))) {
+                    O6.setBackgroundColor(Color.parseColor("#A45B5B"));
+                } else if ("A1".equals(seats_booked.get(i))) {
                     A1.setBackgroundColor(Color.parseColor("#A45B5B"));
                 } else if ("A2".equals(seats_booked.get(i))) {
                     A2.setBackgroundColor(Color.parseColor("#A45B5B"));
@@ -298,7 +320,134 @@ public class SeatSelection extends Fragment {
             System.out.print("no print");
         }
 
+        O1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                ColorDrawable buttonColor = (ColorDrawable) O1.getBackground();
+                colorid = buttonColor.getColor();
+
+//                if (colorid == (-1654272)) {
+                if (colorid == (-1)) {
+                    System.out.println("I am in selected seat");
+                    O1.setBackgroundColor(Color.parseColor("#87A96B"));
+                    seats_counter++;
+                    arrayListSelected.add("O1");
+                    arrayList.add("O1");
+                    // Toast toast= Toast.makeText(getActivity(),"You have selected this seat.",Toast.LENGTH_LONG);
+                    // toast.show();
+                    //    System.out.println("The seats are :"+ arrayList);
+                } else if (colorid == (-6005925)) {
+                    System.out.println("This seat is already booked");
+                    Toast toast = Toast.makeText(getActivity(), "Sorry, this seat is already booked.", Toast.LENGTH_SHORT);
+                    toast.show();
+                } else if (colorid == (-7886485)) {
+                    System.out.println("This seat is unselected");
+                    //  Toast toast= Toast.makeText(getActivity(),"You have unselected this seat.",Toast.LENGTH_LONG);
+                    //  toast.show();
+                    O1.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    seats_counter--;
+                    arrayListSelected.remove("O1");
+                    arrayList.remove("O1");
+                }
+            }
+        });
+        O2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ColorDrawable buttonColor = (ColorDrawable) O2.getBackground();
+                colorid = buttonColor.getColor();
+
+//                if (colorid == (-1654272)) {
+                if (colorid == (-1)) {
+                    System.out.println("I am in selected seat");
+                    O2.setBackgroundColor(Color.parseColor("#87A96B"));
+                    seats_counter++;
+                    arrayListSelected.add("O2");
+                    arrayList.add("O2");
+                    // Toast toast= Toast.makeText(getActivity(),"You have selected this seat.",Toast.LENGTH_LONG);
+                    // toast.show();
+                    //    System.out.println("The seats are :"+ arrayList);
+                } else if (colorid == (-6005925)) {
+                    System.out.println("This seat is already booked");
+                    Toast toast = Toast.makeText(getActivity(), "Sorry, this seat is already booked.", Toast.LENGTH_SHORT);
+                    toast.show();
+                } else if (colorid == (-7886485)) {
+                    System.out.println("This seat is unselected");
+                    //  Toast toast= Toast.makeText(getActivity(),"You have unselected this seat.",Toast.LENGTH_LONG);
+                    //  toast.show();
+                    O2.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    seats_counter--;
+                    arrayListSelected.remove("O2");
+                    arrayList.remove("O2");
+                }
+            }
+        });
+        O5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ColorDrawable buttonColor = (ColorDrawable) O5.getBackground();
+                colorid = buttonColor.getColor();
+
+//                if (colorid == (-1654272)) {
+                if (colorid == (-1)) {
+                    System.out.println("I am in selected seat");
+                    O5.setBackgroundColor(Color.parseColor("#87A96B"));
+                    seats_counter++;
+                    arrayListSelected.add("O5");
+                    arrayList.add("O5");
+                    // Toast toast= Toast.makeText(getActivity(),"You have selected this seat.",Toast.LENGTH_LONG);
+                    // toast.show();
+                    //    System.out.println("The seats are :"+ arrayList);
+                } else if (colorid == (-6005925)) {
+                    System.out.println("This seat is already booked");
+                    Toast toast = Toast.makeText(getActivity(), "Sorry, this seat is already booked.", Toast.LENGTH_SHORT);
+                    toast.show();
+                } else if (colorid == (-7886485)) {
+                    System.out.println("This seat is unselected");
+                    //  Toast toast= Toast.makeText(getActivity(),"You have unselected this seat.",Toast.LENGTH_LONG);
+                    //  toast.show();
+                    O5.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    seats_counter--;
+                    arrayListSelected.remove("O5");
+                    arrayList.remove("O5");
+                }
+            }
+        });
+        O6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ColorDrawable buttonColor = (ColorDrawable) O6.getBackground();
+                colorid = buttonColor.getColor();
+
+//                if (colorid == (-1654272)) {
+                if (colorid == (-1)) {
+                    System.out.println("I am in selected seat");
+                    O6.setBackgroundColor(Color.parseColor("#87A96B"));
+                    seats_counter++;
+                    arrayListSelected.add("O6");
+                    arrayList.add("O6");
+                    // Toast toast= Toast.makeText(getActivity(),"You have selected this seat.",Toast.LENGTH_LONG);
+                    // toast.show();
+                    //    System.out.println("The seats are :"+ arrayList);
+                } else if (colorid == (-6005925)) {
+                    System.out.println("This seat is already booked");
+                    Toast toast = Toast.makeText(getActivity(), "Sorry, this seat is already booked.", Toast.LENGTH_SHORT);
+                    toast.show();
+                } else if (colorid == (-7886485)) {
+                    System.out.println("This seat is unselected");
+                    //  Toast toast= Toast.makeText(getActivity(),"You have unselected this seat.",Toast.LENGTH_LONG);
+                    //  toast.show();
+                    O6.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    seats_counter--;
+                    arrayListSelected.remove("O6");
+                    arrayList.remove("O6");
+                }
+            }
+        });
         A1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
