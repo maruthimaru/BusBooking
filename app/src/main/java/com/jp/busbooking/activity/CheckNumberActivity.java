@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.jp.busbooking.R;
+import com.jp.busbooking.helper.AESUtils;
 import com.jp.busbooking.helper.CommonClass;
 import com.jp.busbooking.helper.Constance;
 import com.jp.busbooking.helper.QRCodeScanner;
@@ -67,8 +68,16 @@ public class CheckNumberActivity extends AppCompatActivity {
             if (id == null) {
                 Toast.makeText(getApplicationContext(), "Cancel", Toast.LENGTH_SHORT).show();
             } else {
+                String encrypted = id;
+                String decrypted = "";
+                try {
+                    decrypted = AESUtils.decrypt(encrypted);
+                    Log.d("TEST", "decrypted:" + decrypted);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 for (String number:stringArrayList){
-                    if (number.equals(id)){
+                    if (number.equals(decrypted)){
                         Constance.count=1;
                         break;
                     }else {
@@ -76,9 +85,9 @@ public class CheckNumberActivity extends AppCompatActivity {
                     }
                 }
                 if (Constance.count==1){
-                    commonClass.sweetAlertDialog(id, " Has Checked Into Bus ", SweetAlertDialog.SUCCESS_TYPE);
+                    commonClass.sweetAlertDialog(decrypted, " Has Checked Into Bus ", SweetAlertDialog.SUCCESS_TYPE);
                 }else {
-                    commonClass.sweetAlertDialog(id, "  Not Yet register ", SweetAlertDialog.ERROR_TYPE);
+                    commonClass.sweetAlertDialog(decrypted, "  Not Yet register ", SweetAlertDialog.ERROR_TYPE);
                 }
 //                Toast.makeText(getApplicationContext(), id + " Has Checked Into Bus ", Toast.LENGTH_SHORT).show();
 

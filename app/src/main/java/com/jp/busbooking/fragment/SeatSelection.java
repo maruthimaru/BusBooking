@@ -1029,12 +1029,12 @@ public class SeatSelection extends Fragment {
         }*/
 //        Log.e(TAG, "seat_information: "+seatSelected );
         if (seats_counter != 0) {
-            bundle = new Bundle();
-            bundle.putStringArrayList("seats", arrayList);
-            bundle.putStringArrayList("total", arrayList1);
-            addListtoFirebase(arrayList);
-            staticData.sweetAlertDialog("Bus Ticket Booked","Get your QR Code", SweetAlertDialog.SUCCESS_TYPE);
-            setFragment(new DoneFragment(),busListModelList,seats_counter,arrayListSelected);
+                bundle = new Bundle();
+                bundle.putStringArrayList("seats", arrayList);
+                bundle.putStringArrayList("total", arrayList1);
+                addListtoFirebase(arrayList);
+                staticData.sweetAlertDialog("Bus Ticket Booked","Get your QR Code", SweetAlertDialog.SUCCESS_TYPE);
+                setFragment(new DoneFragment(),busListModelList,seats_counter,arrayListSelected);
            /* System.out.println("The arraylist items are :"+ outer);
             System.out.println("The movie is : "+ movie);
             System.out.println("The date is: "+ date);*/
