@@ -2,8 +2,15 @@ package com.jp.busbooking.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -12,39 +19,46 @@ import android.widget.Toast;
 
 import com.jp.busbooking.R;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends Fragment implements View.OnClickListener {
 
     RadioGroup radioGroup;
-    RadioButton admin,staff,student;
+    RadioButton admin, staff, student;
     TextView login;
-    private String type="admin";
-    EditText userId,password;
+    private String type = "admin";
+    EditText userId, password;
+    View view;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view=inflater.inflate(R.layout.activity_login,container,false);
+        return view;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        userId=findViewById(R.id.userId);
-        password=findViewById(R.id.password);
-        radioGroup=findViewById(R.id.radioGroupChoose);
-        admin=findViewById(R.id.admin);
-        staff=findViewById(R.id.staff);
-        student=findViewById(R.id.student);
-        login=findViewById(R.id.login);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        userId = view.findViewById(R.id.userId);
+        password = view.findViewById(R.id.password);
+        radioGroup = view.findViewById(R.id.radioGroupChoose);
+        admin = view.findViewById(R.id.admin);
+        staff = view.findViewById(R.id.staff);
+        student = view.findViewById(R.id.student);
+        login = view.findViewById(R.id.login);
         admin.setChecked(true);
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch (i){
+                switch (i) {
                     case R.id.admin:
-                        type="admin";
+                        type = "admin";
                         break;
                     case R.id.staff:
-                        type="staff";
+                        type = "staff";
                         break;
                     case R.id.student:
-                        type="student";
+                        type = "student";
                         break;
                 }
             }
@@ -59,12 +73,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
         }*/
-     login.setOnClickListener(this);
+        login.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.login:
                 validation();
                 break;
@@ -73,55 +87,40 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void validation() {
 
-        String userID=userId.getText().toString();
-        String pass=password.getText().toString();
-        if (userID.length()>0){
+        String userID = userId.getText().toString();
+        String pass = password.getText().toString();
+        if (userID.length() > 0) {
             userId.setError(null);
-            if (pass.length()>0){
+            if (pass.length() > 0) {
                 password.setError(null);
 //                switch (type) {
 //                    case "admin":
-                        if (userID.equals("admin") && pass.equals("admin")) {
-                            startActivity(new Intent(LoginActivity.this,CheckNumberActivity.class));
-                            Toast.makeText(getApplicationContext(), "Admin Login", Toast.LENGTH_SHORT).show();
-                        }else {
-                            Toast.makeText(getApplicationContext(), "Invaild Login", Toast.LENGTH_SHORT).show();
-                        }
-//                        break;
-//                    case "staff":
-                     /*   if (dbHelper.checkData(DBHelper.dbStaff, DBHelper.staffId, userID, DBHelper.user_Password, pass)) {
-                            ArrayList<StaffModel> staffModelArrayList = dbHelper.getStaff(DBHelper.staffId, userID, DBHelper.user_Password, pass);
-                            dbHelper.insertLogin(staffModelArrayList.get(0).getStaffId(), staffModelArrayList.get(0).getStaffId(), staffModelArrayList.get(0).getStaffName(), "",
-                                    staffModelArrayList.get(0).getStaffPassword(), "staff");
-                            commonMethod.intentFinish(LoginActivity.this, StaffHomeActivity.class);
-                            Toast.makeText(getApplicationContext(), "Staff Login", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getApplicationContext(), "invalid Staff Login", Toast.LENGTH_SHORT).show();
-                        }*/
+                if (userID.equals("admin") && pass.equals("admin")) {
 
-//                        break;
-//                    case "student":
-                      /*  if (dbHelper.checkData(DBHelper.dbStudent, DBHelper.userId, userID, DBHelper.user_Password, pass)) {
-                            ArrayList<StudentModel> studentModelArrayList = dbHelper.getStudent(DBHelper.userId, userID, DBHelper.user_Password, pass);
-                            dbHelper.insertLogin(studentModelArrayList.get(0).getUserId(), studentModelArrayList.get(0).getStaffId(),
-                                    studentModelArrayList.get(0).getStudentName(), studentModelArrayList.get(0).getEmail(),
-                                    studentModelArrayList.get(0).getStudentPassword(), "student");
-                            commonMethod.intentFinish(LoginActivity.this, StudentHomeActivity.class);
-                            Toast.makeText(getApplicationContext(), "Student Login", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getApplicationContext(), "invalid Student Login", Toast.LENGTH_SHORT).show();
-                        }
-//*/
-//                        break;
-//                }
-            }else {
+                    setFragment(new CheckNumberActivity());
+                    Toast.makeText(getActivity(), "Admin Login", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), "Invaild Login", Toast.LENGTH_SHORT).show();
+                }
+            } else {
                 password.requestFocus();
                 password.setError("required password");
             }
-        }else {
+        } else {
             userId.requestFocus();
             userId.setError("required userId");
         }
 
+    }
+
+    private void setFragment(Fragment fragment) {
+        // create a FragmentManager
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        // create a FragmentTransaction to begin the transaction and replace the Fragment
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        // replace the FrameLayout with new Fragment
+        fragmentTransaction.replace(R.id.framLayout, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit(); // save the changes
     }
 }

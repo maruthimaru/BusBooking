@@ -65,8 +65,8 @@
         android:layout_centerHorizontal="true" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/size_200dp"
+        android:layout_height="@dimen/size_200dp"
         android:id="@+id/imageView"
         android:layout_marginTop="@dimen/size_10dp"
         android:layout_centerHorizontal="true"
@@ -80,7 +80,7 @@
         android:textSize="15dp"
         android:gravity="center"
         android:minHeight="@dimen/size_30dp"
-        android:layout_marginTop="@dimen/size_30dp"
+        android:layout_marginTop="@dimen/size_10dp"
         android:layout_below="@id/imageView"
         android:textColor="@color/black"/>
     <TextView
@@ -90,7 +90,7 @@
         android:textSize="15dp"
         android:gravity="center"
         android:minHeight="@dimen/size_30dp"
-        android:layout_marginTop="@dimen/size_30dp"
+        android:layout_marginTop="@dimen/size_10dp"
         android:layout_below="@id/busName"
         android:textColor="@color/black"/>
     <TextView
@@ -100,7 +100,7 @@
         android:textSize="15dp"
         android:gravity="center"
         android:minHeight="@dimen/size_30dp"
-        android:layout_marginTop="@dimen/size_30dp"
+        android:layout_marginTop="@dimen/size_10dp"
         android:layout_below="@id/seatSelected"
         android:textColor="@color/black"/>
 </RelativeLayout>

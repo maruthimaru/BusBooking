@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void addListtoFirebase(){
         myRef.child("busList").removeValue();
+//        myRef.child("SeatsSelectedList").removeValue();
         busListModelArrayList=staticData.getStudentList();
         for (BusListModel studentListModel:busListModelArrayList){
             myRef.child("busList").child(studentListModel.getId()).setValue(studentListModel);

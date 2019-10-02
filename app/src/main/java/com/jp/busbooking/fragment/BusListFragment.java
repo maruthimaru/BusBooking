@@ -62,7 +62,7 @@ List<BusListModel> busListModelList=new ArrayList<>();
                 busListModelList.clear();
                 for (DataSnapshot postSnapshot:dataSnapshot.getChildren()){
 //                    StudentListModel studentListModel =postSnapshot.getValue(StudentListModel.class);
-//                    busListModelList.add(studentListModel);
+//                    userModelArrayList.add(studentListModel);
 //                    staticData.getStudentList();
                     if (postSnapshot.child("from").getValue(String.class).toLowerCase().trim().equals(from)&&postSnapshot.child("to").getValue(String.class).equals(to)){
                         String acNon = postSnapshot.child("acNon").getValue(String.class);
@@ -92,7 +92,7 @@ List<BusListModel> busListModelList=new ArrayList<>();
     @Override
     public void onclickUpdate(BusListModel busListModelList) {
        /* Intent intent=new Intent(getActivity(), SeatSelection.class);
-        intent.putExtra("list",busListModelList);
+        intent.putExtra("list",userModelArrayList);
         startActivity(intent);*/
         setFragment(new userInfoFragment(),busListModelList);
     }

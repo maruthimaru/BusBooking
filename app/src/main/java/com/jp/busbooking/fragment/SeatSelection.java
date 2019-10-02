@@ -29,6 +29,7 @@ import com.jp.busbooking.R;
 import com.jp.busbooking.db.DatabaseHelper;
 import com.jp.busbooking.helper.StaticData;
 import com.jp.busbooking.pojo.BusListModel;
+import com.jp.busbooking.pojo.UserModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,6 +62,7 @@ public class SeatSelection extends Fragment {
     Bundle bundle;
     String busId;
     BusListModel busListModelList;
+    UserModel userModel;
     ValueEventListener valueEventListener;
     int movie;
     String date;
@@ -82,15 +84,16 @@ public class SeatSelection extends Fragment {
 //        getListToFirebase();
     }
 
-    private void addListtoFirebase(ArrayList<String> arrayList) {
+    private void addListtoFirebase(ArrayList<String> arrayList,ArrayList<String> arrayListSelected) {
         Log.e(TAG, "addListtoFirebase: before add : " + arrayList.size());
 //        myRef.child("SeatsSelectedList").removeValue();
 //        arrayList=staticData.getStudentList();
+        userModel.setArrayList(arrayListSelected);
         String key = myRef.child("posts").push().getKey();
 //        for (String seats:arrayList){
         myRef.child("SeatsSelectedList").child(busId).setValue(arrayList);
 //}
-
+        myRef.child("userList").child(userModel.getMobile()).setValue(userModel);
     }
 
     @Nullable
@@ -142,6 +145,7 @@ public class SeatSelection extends Fragment {
         Bundle b = getArguments();
         if (!b.equals(null)) {
             busListModelList = (BusListModel) b.getSerializable("list");
+            userModel = (UserModel) b.getSerializable("userlist");
             busId = busListModelList.getId();
         }
 
@@ -164,7 +168,7 @@ public class SeatSelection extends Fragment {
         valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//            busListModelList.clear();
+//            userModelArrayList.clear();
 
                 for (DataSnapshot postSnapshot:dataSnapshot.getChildren()){
                     Log.e(TAG, "onDataChange: " + postSnapshot.getValue());
@@ -232,7 +236,7 @@ public class SeatSelection extends Fragment {
                     }
                 }
                 Log.e(TAG, "onDataChange: adasda " + seating);
-//            setAdapter(busListModelList);
+//            setAdapter(userModelArrayList);
             }
 
             @Override
@@ -1032,7 +1036,7 @@ public class SeatSelection extends Fragment {
                 bundle = new Bundle();
                 bundle.putStringArrayList("seats", arrayList);
                 bundle.putStringArrayList("total", arrayList1);
-                addListtoFirebase(arrayList);
+                addListtoFirebase(arrayList,arrayListSelected);
                 staticData.sweetAlertDialog("Bus Ticket Booked","Get your QR Code", SweetAlertDialog.SUCCESS_TYPE);
                 setFragment(new DoneFragment(),busListModelList,seats_counter,arrayListSelected);
            /* System.out.println("The arraylist items are :"+ outer);

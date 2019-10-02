@@ -1,54 +1,64 @@
 package com.jp.busbooking.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jp.busbooking.R;
+import com.jp.busbooking.helper.CommonClass;
 import com.jp.busbooking.pojo.BusListModel;
+import com.jp.busbooking.pojo.UserModel;
 
 import java.util.List;
 
-public class BusListAdapter extends RecyclerView.Adapter<BusListAdapter.StudentModel> {
+public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.StudentModel> {
 
     Context context;
-    List<BusListModel> BusListModelList;
+    List<UserModel> BusListModelList;
     ItemListener listener;
+    private CommonClass commonClass;
+
     public interface ItemListener {
-       void onclickUpdate(BusListModel BusListModelList);
+       void onclickUpdate(UserModel BusListModelList);
     }
 
-    public BusListAdapter(Context context, List<BusListModel> BusListModelList, ItemListener listener) {
+    public UserListAdapter(Context context, List<UserModel> BusListModelList, ItemListener listener) {
         this.context = context;
         this.listener = listener;
         this.BusListModelList = BusListModelList;
+        commonClass=new CommonClass(context);
     }
 
     @NonNull
     @Override
     public StudentModel onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater inflater=LayoutInflater.from(context);
-        View view=inflater.inflate(R.layout.homelist_demo,null);
+        View view=inflater.inflate(R.layout.homelist_demo_user,null);
         return new StudentModel(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull StudentModel holder, int position) {
-    final BusListModel busListModel=BusListModelList.get(position);
-        holder.name.setText(busListModel.getBusName());
-        holder.acnon.setText(busListModel.getAcNon());
-        holder.seats.setText("seats : "+busListModel.getSeats());
-        holder.prize.setText("₹"+busListModel.getAmount());
-        holder.rating.setText(busListModel.getRatings());
-        holder.startTime.setText(busListModel.getFrom());
-        holder.endTime.setText(busListModel.getTo());
-        holder.memberRating.setText(busListModel.getRatingMember());
+    final UserModel busListModel=BusListModelList.get(position);
+        holder.name.setText(busListModel.getName());
+        holder.acnon.setText(busListModel.getMobile());
+        if (busListModel.getArrayList()!=null) {
+            holder.seats.setText("seats : " + busListModel.getArrayList().toString());
+        }else {
+            holder.seats.setText("age : " + busListModel.getAge());
+        }
+        byte[] decodedString = Base64.decode(busListModel.getBase64(), Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        commonClass.imageLoad(holder.orderimages,decodedByte);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,6 +76,7 @@ public class BusListAdapter extends RecyclerView.Adapter<BusListAdapter.StudentM
 
         TextView name,acnon,seats,rating,memberRating,startTime,endTime,prize;
         CardView cardView;
+        ImageView orderimages;
         StudentModel(@NonNull View itemView) {
             super(itemView);
             name=itemView.findViewById(R.id.name);
@@ -77,6 +88,7 @@ public class BusListAdapter extends RecyclerView.Adapter<BusListAdapter.StudentM
             endTime=itemView.findViewById(R.id.endTime);
             prize=itemView.findViewById(R.id.prize);
             cardView=itemView.findViewById(R.id.card_view);
+            orderimages=itemView.findViewById(R.id.orderimages);
         }
     }
 }

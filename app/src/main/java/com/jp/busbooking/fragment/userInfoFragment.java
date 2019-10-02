@@ -21,9 +21,10 @@ import android.widget.ImageView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.jp.busbooking.R;
+import com.jp.busbooking.helper.CommonClass;
 import com.jp.busbooking.helper.Constance;
 import com.jp.busbooking.pojo.BusListModel;
-import com.jp.busbooking.pojo.userModel;
+import com.jp.busbooking.pojo.UserModel;
 
 import java.io.ByteArrayOutputStream;
 
@@ -31,10 +32,11 @@ import static android.app.Activity.RESULT_OK;
 
 public class userInfoFragment extends Fragment {
 View view;
-userModel userModel;
+UserModel userModel;
 EditText userName,mobileNo,age;
 FloatingActionButton floatingActionButton;
 ImageView userImage,addImage;
+CommonClass commonClass;
 
     String busId;
     BusListModel busListModelList;
@@ -51,6 +53,7 @@ ImageView userImage,addImage;
         floatingActionButton=view.findViewById(R.id.floatingActionButton);
         userImage=view.findViewById(R.id.userImage);
         addImage=view.findViewById(R.id.addImage);
+        commonClass=new CommonClass(getActivity());
 
         final Bundle b = getArguments();
         if (!b.equals(null)) {
@@ -80,9 +83,9 @@ ImageView userImage,addImage;
                                 base64=getImageData(bm);
                             }
                             DatabaseReference reference = FirebaseDatabase.getInstance().getReference("userList").child(mobile);
-                            userModel=new userModel(name,mobile , aget,base64);
+                            userModel=new UserModel(name,mobile , aget,base64,busId,"no");
                             reference.setValue(userModel);
-                            setFragment(new SeatSelection(),busListModelList);
+                            setFragment(new SeatSelection(),busListModelList,userModel);
                             Constance.mobile=mobile;
                         }else {
                             age.requestFocus();
@@ -122,25 +125,25 @@ ImageView userImage,addImage;
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             imageBitmap = (Bitmap) extras.get("data");
-            userImage.setImageBitmap(imageBitmap);
+            commonClass.imageLoad(userImage,imageBitmap);
         }
     }
 
     public String getImageData(Bitmap bmp) {
 
         ByteArrayOutputStream bao = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.PNG, 100, bao); // bmp is bitmap from user image file
-        bmp.recycle();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, bao); // bmp is bitmap busid user image file
         byte[] byteArray = bao.toByteArray();
         String imageB64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
         //  store & retrieve this string to firebase
         return imageB64;
     }
 
-    private void setFragment(Fragment fragment,BusListModel busListModelList) {
+    private void setFragment(Fragment fragment,BusListModel busListModelList,UserModel userModel) {
         // create a FragmentManager
         Bundle bundle=new Bundle();
         bundle.putSerializable("list",busListModelList);
+        bundle.putSerializable("userlist",userModel);
         FragmentManager fm = getActivity().getSupportFragmentManager();
         // create a FragmentTransaction to begin the transaction and replace the Fragment
         FragmentTransaction fragmentTransaction = fm.beginTransaction();

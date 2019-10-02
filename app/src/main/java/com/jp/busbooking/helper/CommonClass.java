@@ -1,7 +1,13 @@
 package com.jp.busbooking.helper;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Handler;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -22,5 +28,12 @@ public class CommonClass {
                 sweetAlertDialog.dismissWithAnimation();
             }
         }, 5000 );
+    }
+
+    public void imageLoad(ImageView imageView, Bitmap bitmap){
+        Glide.with(context).asBitmap().
+                load(bitmap).
+                apply(RequestOptions.circleCropTransform()).
+                into(imageView);
     }
 }

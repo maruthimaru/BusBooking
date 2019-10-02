@@ -61,7 +61,7 @@ FloatingActionButton floatingActionButton;
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), LoginActivity.class));
+                setFragment(new LoginActivity(),"","");
             }
         });
         staticData.handleBackPress(view);

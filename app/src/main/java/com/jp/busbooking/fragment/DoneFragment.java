@@ -30,6 +30,7 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.jp.busbooking.R;
 import com.jp.busbooking.helper.AESUtils;
+import com.jp.busbooking.helper.CommonClass;
 import com.jp.busbooking.helper.Constance;
 import com.jp.busbooking.pojo.BusListModel;
 
@@ -48,6 +49,7 @@ public class DoneFragment extends Fragment {
     View view;
     ArrayList<String> stringArrayList;
     int seatCount;
+    CommonClass commonClass;
     TextView busname,seat,seatSelected;
     private String TAG=DoneFragment.class.getSimpleName();
     DatabaseReference databaseReference;
@@ -66,6 +68,8 @@ public class DoneFragment extends Fragment {
         userImage=view.findViewById(R.id.userImage);
         userName=view.findViewById(R.id.userName);
         userMobile=view.findViewById(R.id.userMobile);
+        commonClass=new CommonClass(getActivity());
+
         Bundle b = getArguments();
         if (!b.equals(null)) {
             busListModelList = (BusListModel) b.getSerializable("list");
@@ -90,9 +94,9 @@ public class DoneFragment extends Fragment {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
             bitmap = TextToImageEncode(encrypted);
-            imageView.setImageBitmap(bitmap);
+            commonClass.imageLoad(imageView,bitmap);
+
         } catch (WriterException e) {
             e.printStackTrace();
         }
@@ -114,9 +118,7 @@ public class DoneFragment extends Fragment {
 
                 try {
                     bitmap = TextToImageEncode(EditTextValue);
-
-                    imageView.setImageBitmap(bitmap);
-
+                    commonClass.imageLoad(imageView,bitmap);
                 } catch (WriterException e) {
                     e.printStackTrace();
                 }
@@ -134,7 +136,7 @@ public class DoneFragment extends Fragment {
             for (DataSnapshot postSnapshot:dataSnapshot.getChildren()){
                 Log.e(TAG, "onDataChange: mobile : "+ Constance.mobile + " count : "+postSnapshot.getChildrenCount() );
 //                    StudentListModel studentListModel =postSnapshot.getValue(StudentListModel.class);
-//                    busListModelList.add(studentListModel);
+//                    userModelArrayList.add(studentListModel);
 //                    staticData.getStudentList();
                 Log.e(TAG, "onDataChange: mobile : "+ Constance.mobile + " value : " + postSnapshot.child("mobile").getValue(String.class) );
                 if (postSnapshot.child("mobile").getValue(String.class).toLowerCase().trim().equals(Constance.mobile)){
@@ -146,7 +148,8 @@ public class DoneFragment extends Fragment {
                     Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                     userMobile.setText(mobile);
                     userName.setText(name);
-                    userImage.setImageBitmap(decodedByte);
+                    commonClass.imageLoad(userImage,decodedByte);
+
                 }
             }
         }
