@@ -32,8 +32,11 @@ import com.jp.busbooking.helper.CommonClass;
 import com.jp.busbooking.helper.Constance;
 import com.jp.busbooking.helper.QRCodeScanner;
 import com.jp.busbooking.helper.QRCodeScannerPortait;
+import com.jp.busbooking.pojo.UserModel;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -46,7 +49,8 @@ public class CheckNumberActivity extends Fragment {
     CommonClass commonClass;
     ArrayList<String> stringArrayList;
     View view;
-
+    List<UserModel> userModelArrayList =new ArrayList<>();
+    UserModel userModel;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -126,9 +130,20 @@ public class CheckNumberActivity extends Fragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                for (String number : stringArrayList) {
-                    if (number.equals(decrypted)) {
-                        Constance.count = 1;
+                for (UserModel number : userModelArrayList) {
+                    userModel=number;
+                    if (number.getMobile().equals(decrypted)) {
+                        myRef.child(decrypted).addListenerForSingleValueEvent(valueEventListenerSeat);
+                        if (number.getCheckenStatus().equals("checkout")){
+                            Constance.count = 2;
+                            number.setCheckenStatus("reg");
+                        }else if (number.getCheckenStatus().equals("reg")){
+                            Constance.count = 0;
+                        }
+                        else {
+                            Constance.count = 1;
+                            number.setCheckenStatus("checkout");
+                        }
                         break;
                     } else {
                         Constance.count = 0;
@@ -136,7 +151,9 @@ public class CheckNumberActivity extends Fragment {
                 }
                 if (Constance.count == 1) {
                     commonClass.sweetAlertDialog(decrypted, " Has Checked Into Bus ", SweetAlertDialog.SUCCESS_TYPE);
-                } else {
+                } else   if (Constance.count == 2) {
+                    commonClass.sweetAlertDialog(decrypted, " Has Checked Out Bus ", SweetAlertDialog.SUCCESS_TYPE);
+                }else {
                     commonClass.sweetAlertDialog(decrypted, "  Not Yet register ", SweetAlertDialog.ERROR_TYPE);
                 }
 //                Toast.makeText(getApplicationContext(), id + " Has Checked Into Bus ", Toast.LENGTH_SHORT).show();
@@ -152,13 +169,46 @@ public class CheckNumberActivity extends Fragment {
         }
     }
 
+    ValueEventListener valueEventListenerSeat = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//            userModelArrayList.clear();
+            if (userModel != null) {
+                if (userModel.getCheckenStatus().equals("yes")){
+                    userModel.setCheckenStatus("checkout");
+                }else if (userModel.getCheckenStatus().equals("no")){
+                    userModel.setCheckenStatus("yes");
+                }/*else if (userModel.getCheckenStatus().equals("checkout")){
+                    userModel.setCheckenStatus("reg");
+                }*/
+
+                myRef.child(userModel.getMobile()).setValue(userModel);
+            }
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+        }
+    };
+
     ValueEventListener valueEventListener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 //            busListModelList.clear();
+            userModelArrayList.clear();
             Log.e("TAG", "onDataChange: " + dataSnapshot.getValue());
             for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                 stringArrayList.add(postSnapshot.child("mobile").getValue().toString());
+
+                String name = postSnapshot.child("name").getValue(String.class);
+                String mobile = postSnapshot.child("mobile").getValue(String.class);
+                String age = postSnapshot.child("age").getValue(String.class);
+                String base64 = postSnapshot.child("base64").getValue(String.class);
+                String busid = postSnapshot.child("busid").getValue(String.class);
+                String checkenStatus = postSnapshot.child("checkenStatus").getValue(String.class);
+                ArrayList<String> tempArrayList = (ArrayList) postSnapshot.child("arrayList").getValue();
+                userModelArrayList.add(new UserModel(name, mobile, age, base64, busid, checkenStatus, tempArrayList));
             /*   if (postSnapshot.exists()){
                    Toast.makeText(getApplicationContext(),"You Can Check In" ,Toast.LENGTH_SHORT ).show();
                }*/

@@ -59,7 +59,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.Studen
         byte[] decodedString = Base64.decode(busListModel.getBase64(), Base64.DEFAULT);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         commonClass.imageLoad(holder.orderimages,decodedByte);
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
+        holder.cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listener.onclickUpdate(busListModel);
@@ -74,7 +74,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.Studen
 
     class StudentModel extends RecyclerView.ViewHolder {
 
-        TextView name,acnon,seats,rating,memberRating,startTime,endTime,prize;
+        TextView name,acnon,seats,rating,memberRating,startTime,endTime,cancel;
         CardView cardView;
         ImageView orderimages;
         StudentModel(@NonNull View itemView) {
@@ -86,7 +86,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.Studen
             memberRating=itemView.findViewById(R.id.memberRating);
             startTime=itemView.findViewById(R.id.startTime);
             endTime=itemView.findViewById(R.id.endTime);
-            prize=itemView.findViewById(R.id.prize);
+            cancel=itemView.findViewById(R.id.cancel);
             cardView=itemView.findViewById(R.id.card_view);
             orderimages=itemView.findViewById(R.id.orderimages);
         }

@@ -75,7 +75,9 @@ List<UserModel> userModelArrayList =new ArrayList<>();
 //                    StudentListModel studentListModel =postSnapshot.getValue(StudentListModel.class);
 //                    userModelArrayList.add(studentListModel);
 //                    staticData.getStudentList();
-            if (busid != null && postSnapshot.child("busid").getValue(String.class).toLowerCase().trim().equals(busid.getId()) && postSnapshot.child("checkenStatus").getValue(String.class).toLowerCase().trim().equals("no")) {
+            if (busid != null && postSnapshot.child("busid").getValue(String.class).toLowerCase().trim().equals(busid.getId()) &&
+                    postSnapshot.child("checkenStatus").getValue(String.class).toLowerCase().trim().equals("no")) {
+
                 String name = postSnapshot.child("name").getValue(String.class);
                 String mobile = postSnapshot.child("mobile").getValue(String.class);
                 String age = postSnapshot.child("age").getValue(String.class);
