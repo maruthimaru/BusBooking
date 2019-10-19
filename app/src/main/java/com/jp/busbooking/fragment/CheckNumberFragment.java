@@ -1,12 +1,12 @@
-package com.jp.busbooking.activity;
+package com.jp.busbooking.fragment;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,18 +23,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.jp.busbooking.R;
-import com.jp.busbooking.fragment.AllBusListFragment;
 import com.jp.busbooking.helper.AESUtils;
 import com.jp.busbooking.helper.CommonClass;
 import com.jp.busbooking.helper.Constance;
 import com.jp.busbooking.helper.QRCodeScanner;
-import com.jp.busbooking.helper.QRCodeScannerPortait;
 import com.jp.busbooking.pojo.UserModel;
 
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +38,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static android.app.Activity.RESULT_OK;
 
-public class CheckNumberActivity extends Fragment {
+public class CheckNumberFragment extends Fragment {
     ImageView imageView2;
     FirebaseDatabase database;
     DatabaseReference myRef;

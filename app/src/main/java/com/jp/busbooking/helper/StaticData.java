@@ -5,11 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 import android.view.KeyEvent;
 import android.view.View;
 
 import com.jp.busbooking.pojo.BusListModel;
+import com.jp.busbooking.pojo.DriverModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,16 @@ public class StaticData {
                 ,"Madurai","coimbatore"));
         studentListModelArrayList.add(new BusListModel("4","A1 Travels","52","4.2","1200","22:00","06:30","1251","A/C"
                 ,"Madurai","coimbatore"));
+        return studentListModelArrayList;
+    }
+
+
+    public List<DriverModel> getDriverList(){
+        List<DriverModel> studentListModelArrayList=new ArrayList<>();
+        studentListModelArrayList.add(new DriverModel("raja","001","1","0","0"));
+        studentListModelArrayList.add(new DriverModel("sri","002","2","0","0"));
+        studentListModelArrayList.add(new DriverModel("arun","003","3","0","0"));
+        studentListModelArrayList.add(new DriverModel("ram","004","4","0","0"));
         return studentListModelArrayList;
     }
 

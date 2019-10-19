@@ -3,9 +3,9 @@ package com.jp.busbooking.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.jp.busbooking.R;
 import com.jp.busbooking.helper.CommonClass;
-import com.jp.busbooking.pojo.BusListModel;
 import com.jp.busbooking.pojo.UserModel;
 
 import java.util.List;

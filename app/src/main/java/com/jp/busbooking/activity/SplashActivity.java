@@ -6,14 +6,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Handler;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.jp.busbooking.R;
 
@@ -54,6 +52,9 @@ public class SplashActivity extends AppCompatActivity {
                         != PackageManager.PERMISSION_GRANTED||
                 ContextCompat.checkSelfPermission(this,
                         Manifest.permission.ACCESS_NETWORK_STATE)
+                        != PackageManager.PERMISSION_GRANTED||
+                ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION)
                         != PackageManager.PERMISSION_GRANTED
         ) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
@@ -62,7 +63,8 @@ public class SplashActivity extends AppCompatActivity {
                     android.Manifest.permission.INTERNET) && ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.CAMERA) && ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.SEND_SMS)&& ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_NETWORK_STATE)) {
+                    Manifest.permission.ACCESS_NETWORK_STATE)&& ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION)) {
                 goNext();
             } else {
                 ActivityCompat.requestPermissions(this,
@@ -72,6 +74,7 @@ public class SplashActivity extends AppCompatActivity {
                                 Manifest.permission.CAMERA
                                 , Manifest.permission.SEND_SMS
                                 , Manifest.permission.ACCESS_NETWORK_STATE
+                                , Manifest.permission.ACCESS_COARSE_LOCATION
                         },
                         MY_PERMISSIONS_REQUEST_WRITE_FILES);
             }

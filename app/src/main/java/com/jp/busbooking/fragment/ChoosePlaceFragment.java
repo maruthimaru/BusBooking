@@ -1,13 +1,12 @@
 package com.jp.busbooking.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.jp.busbooking.R;
-import com.jp.busbooking.activity.LoginActivity;
 import com.jp.busbooking.helper.StaticData;
 
 public class ChoosePlaceFragment extends Fragment {
@@ -61,7 +59,7 @@ FloatingActionButton floatingActionButton;
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setFragment(new LoginActivity(),"","");
+                setFragment(new LoginFragment(),"","");
             }
         });
         staticData.handleBackPress(view);
