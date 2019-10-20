@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Handler;
+import android.telephony.SmsManager;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -35,5 +36,15 @@ public class CommonClass {
                 load(bitmap).
                 apply(RequestOptions.circleCropTransform()).
                 into(imageView);
+    }
+
+    public void sendSMS(String phoneNo, String msg) {
+        try {
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(phoneNo, null, msg, null, null);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }

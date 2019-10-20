@@ -1,5 +1,6 @@
 package com.jp.busbooking.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,11 +20,19 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.jp.busbooking.R;
+import com.jp.busbooking.activity.UserMapsActivity;
+import com.jp.busbooking.helper.Constance;
 import com.jp.busbooking.pojo.DriverModel;
+import com.jp.busbooking.pojo.UserModel;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
 
@@ -34,6 +43,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     EditText userId, password;
     DriverModel driverModel;
     View view;
+    DatabaseReference databaseReference;
+    List<UserModel> userModelArrayList =new ArrayList<>();
 
 
     ValueEventListener valueEventListener = new ValueEventListener() {
@@ -43,15 +54,58 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             Log.e(TAG,"valueEventListener :" +dataSnapshot.getValue() );
             if (dataSnapshot.getValue()!=null){
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-//                     driverModel= postSnapshot.getValue(DriverModel.class);
-                    Log.e(TAG,"valueEventListener : id : "+postSnapshot.getValue().toString());
+
+                    String busid = postSnapshot.child("busid").getValue(String.class);
+                    String id = postSnapshot.child("id").getValue(String.class);
+                    String lat = postSnapshot.child("lat").getValue(String.class);
+                    String lng= postSnapshot.child("lng").getValue(String.class);
+                    String name= postSnapshot.child("name").getValue(String.class);
+                     driverModel= new DriverModel(name,id,busid,lat,lng);
                 }
-//                setFragment(new DriverHomeFragment());
+                setFragment(new DriverHomeFragment(),driverModel);
             }else {
-                Toast.makeText(getActivity(), "Invaild Login", Toast.LENGTH_SHORT).show();
+                databaseReference= FirebaseDatabase.getInstance().getReference("userList");
+                databaseReference.addListenerForSingleValueEvent(valueEventListenerUser);
             }
 //
         }
+
+        //userlist
+        ValueEventListener valueEventListenerUser=new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                userModelArrayList.clear();
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+//                    StudentListModel studentListModel =postSnapshot.getValue(StudentListModel.class);
+//                    userModelArrayList.add(studentListModel);
+//                    staticData.getStudentList();
+                    Log.e(TAG,"valueEventListenerUser userId  : " +userId.getText().toString() +" mobile : "+postSnapshot.child("mobile").getValue(String.class) );
+                    if (postSnapshot.child("mobile").getValue(String.class).toLowerCase().trim().equals(userId.getText().toString()) &&
+                            !postSnapshot.child("checkenStatus").getValue(String.class).toLowerCase().trim().equals("cancel")) {
+
+                        String name = postSnapshot.child("name").getValue(String.class);
+                        String mobile = postSnapshot.child("mobile").getValue(String.class);
+                        String gmobile = postSnapshot.child("gmobile").getValue(String.class);
+                        String age = postSnapshot.child("age").getValue(String.class);
+                        String base64 = postSnapshot.child("base64").getValue(String.class);
+                        String busid = postSnapshot.child("busid").getValue(String.class);
+                        String checkenStatus = postSnapshot.child("checkenStatus").getValue(String.class);
+                        ArrayList<String> tempArrayList = (ArrayList) postSnapshot.child("arrayList").getValue();
+                        userModelArrayList.add(new UserModel(name, mobile, age, base64, busid, checkenStatus, tempArrayList,gmobile));
+
+                        setFragment(new userSingleFragment(),userModelArrayList);
+
+                    }else {
+                        Toast.makeText(getActivity(), "Invaild Login", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
 
         @Override
         public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -137,7 +191,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                             .orderByChild("id")
                             .equalTo(userID);
 
-                    query.addValueEventListener(valueEventListener);
+                    query.addListenerForSingleValueEvent(valueEventListener);
                 }
             } else {
                 password.requestFocus();
@@ -152,6 +206,34 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     private void setFragment(Fragment fragment) {
         // create a FragmentManager
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        // create a FragmentTransaction to begin the transaction and replace the Fragment
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        // replace the FrameLayout with new Fragment
+        fragmentTransaction.replace(R.id.framLayout, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit(); // save the changes
+    }
+
+    private void setFragment(Fragment fragment,DriverModel driverModel) {
+        // create a FragmentManager
+        Bundle bundle=new Bundle();
+        bundle.putSerializable(Constance.list,driverModel);
+        fragment.setArguments(bundle);
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        // create a FragmentTransaction to begin the transaction and replace the Fragment
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        // replace the FrameLayout with new Fragment
+        fragmentTransaction.replace(R.id.framLayout, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit(); // save the changes
+    }
+
+    private void setFragment(Fragment fragment, List<UserModel> userLlist) {
+        // create a FragmentManager
+        Bundle bundle=new Bundle();
+        bundle.putSerializable(Constance.list, (Serializable) userLlist);
+        fragment.setArguments(bundle);
         FragmentManager fm = getActivity().getSupportFragmentManager();
         // create a FragmentTransaction to begin the transaction and replace the Fragment
         FragmentTransaction fragmentTransaction = fm.beginTransaction();

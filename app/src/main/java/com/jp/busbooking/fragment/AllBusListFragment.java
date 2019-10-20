@@ -8,6 +8,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.jp.busbooking.R;
 import com.jp.busbooking.adapter.BusListAdapter;
 import com.jp.busbooking.pojo.BusListModel;
+import com.jp.busbooking.pojo.ImagesModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +34,8 @@ public class AllBusListFragment extends Fragment implements BusListAdapter.ItemL
     DatabaseReference databaseReference;
     String from, to;
     List<BusListModel> busListModelList = new ArrayList<>();
+    private int i=0;
+    private String TAG=AllBusListFragment.class.getSimpleName();
 
     @Nullable
     @Override
@@ -72,7 +77,10 @@ public class AllBusListFragment extends Fragment implements BusListAdapter.ItemL
                 String seats = postSnapshot.child("seats").getValue(String.class);
                 String startTimings = postSnapshot.child("startTimings").getValue(String.class);
                 String to = postSnapshot.child("to").getValue(String.class);
-                busListModelList.add(new BusListModel(id, busName, seats, ratings, amount, startTimings, endTiming, ratingMember, acNon, from, to));
+                List<Integer> imageList=new ArrayList<>();
+                imageList= (List<Integer>) postSnapshot.child("bus_images_list").getValue();
+                Log.e(TAG, "onDataChange: i = "+ i + " value : " + imageList.size());
+                busListModelList.add(new BusListModel(id, busName, seats, ratings, amount, startTimings, endTiming, ratingMember, acNon, from, to,imageList));
             }
             setAdapter(busListModelList);
         }

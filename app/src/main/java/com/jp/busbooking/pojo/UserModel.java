@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class UserModel implements Serializable {
-    String name,mobile,age,base64,busid,checkenStatus;
+    String name,mobile,age,base64,busid,checkenStatus,gmobile;
     ArrayList<String> arrayList;
 
-    public UserModel(String name, String mobile, String age, String base64, String busid, String checkenStatus, ArrayList<String> arrayList) {
+    public UserModel(String name, String mobile, String age, String base64, String busid, String checkenStatus, ArrayList<String> arrayList,String gmobile) {
         this.name = name;
         this.mobile = mobile;
         this.age = age;
@@ -15,15 +15,25 @@ public class UserModel implements Serializable {
         this.busid = busid;
         this.checkenStatus = checkenStatus;
         this.arrayList = arrayList;
+        this.gmobile=gmobile;
     }
 
-    public UserModel(String name, String mobile, String age, String base64, String busid, String checkenStatus) {
+    public UserModel(String name, String mobile, String age, String base64, String busid, String checkenStatus,String gmobile) {
         this.name = name;
         this.mobile = mobile;
         this.age = age;
         this.base64=base64;
         this.busid = busid;
         this.checkenStatus = checkenStatus;
+        this.gmobile=gmobile;
+    }
+
+    public String getGmobile() {
+        return gmobile;
+    }
+
+    public void setGmobile(String gmobile) {
+        this.gmobile = gmobile;
     }
 
     public String getName() {

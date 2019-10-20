@@ -33,7 +33,7 @@ import static android.app.Activity.RESULT_OK;
 public class userInfoFragment extends Fragment {
 View view;
 UserModel userModel;
-EditText userName,mobileNo,age;
+EditText userName,mobileNo,age,gmobileNo;
 FloatingActionButton floatingActionButton;
 ImageView userImage,addImage;
 CommonClass commonClass;
@@ -49,6 +49,7 @@ CommonClass commonClass;
 
         userName=view.findViewById(R.id.UserName);
         mobileNo=view.findViewById(R.id.mobileNo);
+        gmobileNo=view.findViewById(R.id.gmobileNo);
         age=view.findViewById(R.id.age);
         floatingActionButton=view.findViewById(R.id.floatingActionButton);
         userImage=view.findViewById(R.id.userImage);
@@ -65,11 +66,14 @@ CommonClass commonClass;
             public void onClick(View view) {
                 String name=userName.getText().toString();
                 String mobile=mobileNo.getText().toString();
+                String gmobile=gmobileNo.getText().toString();
                 String aget=age.getText().toString();
                 if (name.length()>0){
                     userName.setError(null);
                     if (mobile.length()>0){
                         mobileNo.setError(null);
+                        if (gmobile.length()>0){
+                            gmobileNo.setError(null);
                         if (aget.length()>0){
                             age.setError(null);
                             Bitmap bm;
@@ -83,13 +87,17 @@ CommonClass commonClass;
                                 base64=getImageData(bm);
                             }
                             DatabaseReference reference = FirebaseDatabase.getInstance().getReference("userList").child(mobile);
-                            userModel=new UserModel(name,mobile , aget,base64,busId,"no");
+                            userModel=new UserModel(name,mobile , aget,base64,busId,"no",gmobile);
                             reference.setValue(userModel);
                             setFragment(new SeatSelection(),busListModelList,userModel);
                             Constance.mobile=mobile;
                         }else {
                             age.requestFocus();
                             age.setError("age required");
+                        }
+                        }else {
+                            gmobileNo.requestFocus();
+                            gmobileNo.setError("gardian mobile Number required");
                         }
                     }else {
                         mobileNo.requestFocus();

@@ -20,6 +20,7 @@
         android:layout_height="@dimen/size_40dp"
         android:layout_toRightOf="@id/userImage"
         android:src="@drawable/add"
+        android:visibility="gone"
         android:layout_marginTop="@dimen/size40dp"
         android:layout_marginLeft="@dimen/size40dp"
         android:layout_below="@id/userImage"
@@ -34,8 +35,10 @@
         android:hint="Name"
         android:singleLine="true"
         android:inputType="text"
+        android:clickable="false"
         android:layout_below="@id/userImage"
         android:paddingLeft="10dp"
+        android:focusable="false"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textSize="14dp"
@@ -52,6 +55,7 @@
         android:singleLine="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:focusable="false"
         android:inputType="number"
         android:paddingLeft="10dp"
         android:textSize="14dp"
@@ -70,6 +74,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:inputType="number"
+        android:focusable="false"
         android:paddingLeft="10dp"
         android:textSize="14dp"
         android:layout_below="@id/mobileNo"
@@ -88,19 +93,39 @@
         android:inputType="number"
         android:paddingLeft="10dp"
         android:textSize="14dp"
+        android:focusable="false"
         android:layout_below="@id/gmobileNo"
         android:layout_marginTop="30dp"
         android:textColor="@color/black"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:clickable="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/size_30dp"
+    <TextView
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:textSize="@dimen/size_20dp"
         android:layout_below="@id/age"
-        app:backgroundTint="@color/white"
-        app:srcCompat="@drawable/ic_right_arrow" />
+        android:layout_marginTop="@dimen/size_30dp"
+        android:textColor="@color/white"
+        android:layout_marginLeft="@dimen/size_20dp"
+        android:padding="@dimen/size_5dp"
+        android:background="@color/colorRed"/>
+
+
+
+    <TextView
+        android:id="@+id/viewmap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View map"
+        android:textSize="@dimen/size_20dp"
+        android:layout_below="@id/age"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/size_30dp"
+        android:textColor="@color/white"
+        android:layout_marginRight="20dp"
+        android:padding="@dimen/size_5dp"
+        android:background="@color/colorB"/>
+
 
 </RelativeLayout>

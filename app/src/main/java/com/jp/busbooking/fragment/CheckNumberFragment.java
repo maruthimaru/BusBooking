@@ -147,6 +147,9 @@ public class CheckNumberFragment extends Fragment {
                 }
                 if (Constance.count == 1) {
                     commonClass.sweetAlertDialog(decrypted, " Has Checked Into Bus ", SweetAlertDialog.SUCCESS_TYPE);
+                    commonClass.sendSMS(userModel.getGmobile(),"From BusBooking App \n Your colleague has checked into the bus \n" +
+                            "To track the bus \n" +
+                            "Username = "+userModel.getMobile()+"\nPassword = "+userModel.getMobile() );
                 } else   if (Constance.count == 2) {
                     commonClass.sweetAlertDialog(decrypted, " Has Checked Out Bus ", SweetAlertDialog.SUCCESS_TYPE);
                 }else {
@@ -199,12 +202,13 @@ public class CheckNumberFragment extends Fragment {
 
                 String name = postSnapshot.child("name").getValue(String.class);
                 String mobile = postSnapshot.child("mobile").getValue(String.class);
+                String gmobile = postSnapshot.child("gmobile").getValue(String.class);
                 String age = postSnapshot.child("age").getValue(String.class);
                 String base64 = postSnapshot.child("base64").getValue(String.class);
                 String busid = postSnapshot.child("busid").getValue(String.class);
                 String checkenStatus = postSnapshot.child("checkenStatus").getValue(String.class);
                 ArrayList<String> tempArrayList = (ArrayList) postSnapshot.child("arrayList").getValue();
-                userModelArrayList.add(new UserModel(name, mobile, age, base64, busid, checkenStatus, tempArrayList));
+                userModelArrayList.add(new UserModel(name, mobile, age, base64, busid, checkenStatus, tempArrayList,gmobile));
             /*   if (postSnapshot.exists()){
                    Toast.makeText(getApplicationContext(),"You Can Check In" ,Toast.LENGTH_SHORT ).show();
                }*/

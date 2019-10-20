@@ -48,13 +48,22 @@ public class SplashActivity extends AppCompatActivity {
                         Manifest.permission.CAMERA)
                         != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(this,
-                        Manifest.permission.SEND_SMS)
-                        != PackageManager.PERMISSION_GRANTED||
-                ContextCompat.checkSelfPermission(this,
                         Manifest.permission.ACCESS_NETWORK_STATE)
                         != PackageManager.PERMISSION_GRANTED||
                 ContextCompat.checkSelfPermission(this,
                         Manifest.permission.ACCESS_COARSE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED||
+                ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.SEND_SMS)
+                        != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.READ_PHONE_STATE)
+                        != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.READ_SMS)
+                        != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.RECEIVE_SMS)
                         != PackageManager.PERMISSION_GRANTED
         ) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
@@ -62,9 +71,12 @@ public class SplashActivity extends AppCompatActivity {
                     android.Manifest.permission.WRITE_EXTERNAL_STORAGE) && ActivityCompat.shouldShowRequestPermissionRationale(this,
                     android.Manifest.permission.INTERNET) && ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.CAMERA) && ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.SEND_SMS)&& ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.ACCESS_NETWORK_STATE)&& ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                    Manifest.permission.ACCESS_COARSE_LOCATION)&& ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.SEND_SMS) && ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_PHONE_STATE) && ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_SMS) && ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.RECEIVE_SMS)) {
                 goNext();
             } else {
                 ActivityCompat.requestPermissions(this,
@@ -74,7 +86,13 @@ public class SplashActivity extends AppCompatActivity {
                                 Manifest.permission.CAMERA
                                 , Manifest.permission.SEND_SMS
                                 , Manifest.permission.ACCESS_NETWORK_STATE
-                                , Manifest.permission.ACCESS_COARSE_LOCATION
+                                , Manifest.permission.ACCESS_COARSE_LOCATION,
+                                Manifest.permission.SEND_SMS,
+                                Manifest.permission.RECEIVE_SMS,
+                                Manifest.permission.READ_SMS,
+
+                                Manifest.permission.READ_PHONE_STATE,
+                                Manifest.permission.ACCESS_NETWORK_STATE
                         },
                         MY_PERMISSIONS_REQUEST_WRITE_FILES);
             }

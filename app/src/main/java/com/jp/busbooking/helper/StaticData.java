@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi;
 import android.view.KeyEvent;
 import android.view.View;
 
+import com.jp.busbooking.R;
 import com.jp.busbooking.pojo.BusListModel;
 import com.jp.busbooking.pojo.DriverModel;
 
@@ -27,23 +28,56 @@ public class StaticData {
     public List<BusListModel> getStudentList(){
         List<BusListModel> studentListModelArrayList=new ArrayList<>();
         studentListModelArrayList.add(new BusListModel("1","No 1 AirTravels","30","4.0","600","23:00","05:30","651","A/C"
-                ,"Bangalore","coimbatore"));
+                ,"Bangalore","coimbatore",bus1()));
         studentListModelArrayList.add(new BusListModel("2","A1 Travels","52","4.2","800","22:00","04:30","1251","A/C"
-                ,"Bangalore","coimbatore"));
+                ,"Bangalore","coimbatore",bus2()));
         studentListModelArrayList.add(new BusListModel("3","National Travels","45","2.5","400","23:30","06:30","241","Non A/C"
-                ,"Madurai","coimbatore"));
+                ,"Madurai","coimbatore",bus3()));
         studentListModelArrayList.add(new BusListModel("4","A1 Travels","52","4.2","1200","22:00","06:30","1251","A/C"
-                ,"Madurai","coimbatore"));
+                ,"Madurai","coimbatore",bus4()));
         return studentListModelArrayList;
     }
 
+    public List<Integer> bus1(){
+        List<Integer> imageList=new ArrayList<>();
+        imageList.add(R.drawable.universal_bus);
+        imageList.add(R.drawable.universal_bus);
+        imageList.add(R.drawable.universal_bus);
+        imageList.add(R.drawable.universal_bus);
+        return imageList;
+    }
+
+    public List<Integer> bus2(){
+        List<Integer> imageList=new ArrayList<>();
+        imageList.add(R.drawable.universal_bus);
+        imageList.add(R.drawable.universal_bus);
+        imageList.add(R.drawable.universal_bus);
+        imageList.add(R.drawable.universal_bus);
+        return imageList;
+    }
+    public List<Integer> bus3(){
+        List<Integer> imageList=new ArrayList<>();
+        imageList.add(R.drawable.universal_bus);
+        imageList.add(R.drawable.universal_bus);
+        imageList.add(R.drawable.universal_bus);
+        imageList.add(R.drawable.universal_bus);
+        return imageList;
+    }
+    public List<Integer> bus4(){
+        List<Integer> imageList=new ArrayList<>();
+        imageList.add(R.drawable.universal_bus);
+        imageList.add(R.drawable.universal_bus);
+        imageList.add(R.drawable.universal_bus);
+        imageList.add(R.drawable.universal_bus);
+        return imageList;
+    }
 
     public List<DriverModel> getDriverList(){
         List<DriverModel> studentListModelArrayList=new ArrayList<>();
-        studentListModelArrayList.add(new DriverModel("raja","001","1","0","0"));
-        studentListModelArrayList.add(new DriverModel("sri","002","2","0","0"));
-        studentListModelArrayList.add(new DriverModel("arun","003","3","0","0"));
-        studentListModelArrayList.add(new DriverModel("ram","004","4","0","0"));
+        studentListModelArrayList.add(new DriverModel("raja","001","1","11.0210","76.9663"));
+        studentListModelArrayList.add(new DriverModel("sri","002","2","11.0210","76.9663"));
+        studentListModelArrayList.add(new DriverModel("arun","003","3","11.0210","76.9663"));
+        studentListModelArrayList.add(new DriverModel("ram","004","4","11.0210","76.9663"));
         return studentListModelArrayList;
     }
 

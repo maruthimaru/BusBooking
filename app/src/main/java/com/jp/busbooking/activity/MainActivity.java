@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addListtoFirebaseDriverList() {
-        myRef.child("busList").removeValue();
+        myRef.child("driverList").removeValue();
 //        myRef.child("SeatsSelectedList").removeValue();
         driverListModelArrayList=staticData.getDriverList();
         for (DriverModel studentListModel:driverListModelArrayList){

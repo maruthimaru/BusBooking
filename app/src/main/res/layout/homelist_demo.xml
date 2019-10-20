@@ -235,5 +235,11 @@
                     android:textSize="@dimen/size_12dp" />
             </LinearLayout>
         </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/busImageListRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/secnd"/>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -3,13 +3,13 @@ package com.jp.busbooking.pojo;
 import java.io.Serializable;
 import java.util.List;
 
-public class BusListModel implements Serializable {
+public class BusListModel1 implements Serializable {
 
     String id,busName,seats,ratings,amount,startTiming,endTiming,ratingMember,acNon,from,to;
-    List<Integer> bus_images_list;
+    List<ImagesModel> bus_images_list;
 
-    public BusListModel(String id, String busName, String seats, String ratings, String amount, String startTiming,
-                        String endTiming, String ratingMember, String acNon, String from, String to, List<Integer> bus_images_list) {
+    public BusListModel1(String id, String busName, String seats, String ratings, String amount, String startTiming,
+                         String endTiming, String ratingMember, String acNon, String from, String to, List<ImagesModel> bus_images_list) {
         this.id = id;
         this.busName = busName;
         this.seats = seats;
@@ -24,11 +24,11 @@ public class BusListModel implements Serializable {
         this.bus_images_list = bus_images_list;
     }
 
-    public List<Integer> getBus_images_list() {
+    public List<ImagesModel> getBus_images_list() {
         return bus_images_list;
     }
 
-    public void setBus_images_list(List<Integer> bus_images_list) {
+    public void setBus_images_list(List<ImagesModel> bus_images_list) {
         this.bus_images_list = bus_images_list;
     }
 

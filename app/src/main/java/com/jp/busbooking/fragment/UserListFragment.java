@@ -21,6 +21,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.jp.busbooking.R;
 import com.jp.busbooking.adapter.UserListAdapter;
+import com.jp.busbooking.helper.CommonClass;
 import com.jp.busbooking.pojo.BusListModel;
 import com.jp.busbooking.pojo.UserModel;
 
@@ -39,6 +40,7 @@ List<UserModel> userModelArrayList =new ArrayList<>();
     private ArrayList<String> tempArrayList=new ArrayList<>();
     private Query query;
     private UserModel busListModelList;
+    private CommonClass commonClass;
 
     @Nullable
     @Override
@@ -47,6 +49,7 @@ List<UserModel> userModelArrayList =new ArrayList<>();
         recyclerView=view.findViewById(R.id.buslistRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
+        commonClass=new CommonClass(getActivity());
         //related to select * busid booklist
         Bundle bundle=getArguments();
         if (bundle!=null){
@@ -79,12 +82,13 @@ List<UserModel> userModelArrayList =new ArrayList<>();
 
                 String name = postSnapshot.child("name").getValue(String.class);
                 String mobile = postSnapshot.child("mobile").getValue(String.class);
+                String gmobile = postSnapshot.child("gmobile").getValue(String.class);
                 String age = postSnapshot.child("age").getValue(String.class);
                 String base64 = postSnapshot.child("base64").getValue(String.class);
                 String busid = postSnapshot.child("busid").getValue(String.class);
                 String checkenStatus = postSnapshot.child("checkenStatus").getValue(String.class);
                 ArrayList<String> tempArrayList = (ArrayList) postSnapshot.child("arrayList").getValue();
-                userModelArrayList.add(new UserModel(name, mobile, age, base64, busid, checkenStatus, tempArrayList));
+                userModelArrayList.add(new UserModel(name, mobile, age, base64, busid, checkenStatus, tempArrayList,gmobile));
             }
         }
         setAdapter(userModelArrayList);
@@ -128,6 +132,7 @@ List<UserModel> userModelArrayList =new ArrayList<>();
                 databaseReference.child(busListModelList.getMobile()).setValue(busListModelList);
                 Log.e(TAG, "onclickUpdate: arrayList : " + arrayList + " size : " + arrayList.size());
                 reference.child(busid.getId()).setValue(arrayList);
+                commonClass.sendSMS(userModelArrayList.get(0).getGmobile(),"From BusBooking App \n Admini has cancel the booking, your payment will be soon re-transfer or you can book with in next week." );
             }else {
                 busListModelList.setCheckenStatus("cancel");
                 databaseReference.child(busListModelList.getMobile()).setValue(busListModelList);

@@ -3,6 +3,7 @@ package com.jp.busbooking.adapter;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,6 +55,11 @@ public class BusListAdapter extends RecyclerView.Adapter<BusListAdapter.StudentM
                 listener.onclickUpdate(busListModel);
             }
         });
+//        UploadimageAdapter uploadimageAdapter=new UploadimageAdapter(busListModel.getBus_images_list(),context);
+//        holder.busImageListRecyclerView.setAdapter(uploadimageAdapter);
+
+        holder.busImageListRecyclerView.setHasFixedSize(true);
+        holder.busImageListRecyclerView.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
     }
 
     @Override
@@ -65,6 +71,7 @@ public class BusListAdapter extends RecyclerView.Adapter<BusListAdapter.StudentM
 
         TextView name,acnon,seats,rating,memberRating,startTime,endTime,prize;
         CardView cardView;
+        RecyclerView busImageListRecyclerView;
         StudentModel(@NonNull View itemView) {
             super(itemView);
             name=itemView.findViewById(R.id.name);
@@ -76,6 +83,8 @@ public class BusListAdapter extends RecyclerView.Adapter<BusListAdapter.StudentM
             endTime=itemView.findViewById(R.id.endTime);
             prize=itemView.findViewById(R.id.prize);
             cardView=itemView.findViewById(R.id.card_view);
+            busImageListRecyclerView=itemView.findViewById(R.id.busImageListRecyclerView);
+
         }
     }
 }

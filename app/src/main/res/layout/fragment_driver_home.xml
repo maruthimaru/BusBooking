@@ -2,26 +2,40 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <Button
         android:id="@+id/start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="start"
+        android:background="@color/white"
         android:padding="@dimen/size_10dp"
         android:textColor="@color/black"
         android:textSize="@dimen/size_30dp"/>
 
-    <TextView
+    <Button
         android:id="@+id/stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="stop"
         android:padding="@dimen/size_10dp"
-        android:visibility="gone"
+        android:background="@color/colorPrimary"
+        android:visibility="visible"
         android:layout_marginLeft="@dimen/size_20dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="@dimen/size_30dp"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/latlng"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_30dp"/>
 
 </LinearLayout>

@@ -8,6 +8,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.jp.busbooking.R;
 import com.jp.busbooking.adapter.BusListAdapter;
 import com.jp.busbooking.pojo.BusListModel;
+import com.jp.busbooking.pojo.ImagesModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +33,10 @@ RecyclerView recyclerView;
 BusListAdapter busListAdapter;
 DatabaseReference databaseReference;
 String from,to;
+int i=0;
 List<BusListModel> busListModelList=new ArrayList<>();
+    private String TAG=BusListFragment.class.getSimpleName();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -76,8 +82,17 @@ List<BusListModel> busListModelList=new ArrayList<>();
                         String seats= postSnapshot.child("seats").getValue(String.class);
                         String startTimings= postSnapshot.child("startTimings").getValue(String.class);
                         String to= postSnapshot.child("to").getValue(String.class);
-                        busListModelList.add(new BusListModel(id,busName,seats,ratings,amount,startTimings,endTiming,ratingMember,acNon,from,to));
+                        Log.e(TAG, "onDataChange: "+postSnapshot.child("bus_images_list").getValue() );
+                        List<Integer> imageList=new ArrayList<>();
+                        imageList= (List<Integer>) postSnapshot.child("bus_images_list").getValue();
+                        Log.e(TAG, "onDataChange: i = "+ i + " value : " + imageList.size());
+                        /*for (DataSnapshot busImagesList:postSnapshot.getChildren()){
+                            Log.e(TAG, "onDataChange: i = "+ i + " value : " + busImagesList.child(String.valueOf(i)).getValue(Integer.class));
+//                            imageList.add(busImagesList.child(String.valueOf(i)).getValue(Integer.class));
+                        }*/
+                        busListModelList.add(new BusListModel(id,busName,seats,ratings,amount,startTimings,endTiming,ratingMember,acNon,from,to,imageList));
                     }
+                    ++i;
                 }
                 setAdapter(busListModelList);
             }
